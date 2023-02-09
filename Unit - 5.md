@@ -309,6 +309,46 @@ In the code, `D` is derived from `B` and `C`, and `B` is derived from `A`. The M
 
 Since the method `test` is defined in `B`, it is found and executed. This calls `super().test()`, which resolves to the next class in the MRO, `C`, and the `test` method defined in `C` is executed, which calls `super().test()` and resolves to the `test` method defined in `A`.
 
+
+# SHIT THE PROF DIDN'T TEACH
+## How to Make your Class `iterable`
+- As mentioned in the previous Unit, you have to have an `__iter__()` and a `__next__()` method in your class.
+- Example: Here's a class aka an `iterator` that iterates over numbers from 0 to 10:
+```python
+class Banana:
+    def __init__(self) -> None:
+        pass
+
+    def __iter__(self):
+        self.i = 0
+        return self
+
+    def __next__(self):
+        a = self.i
+        if a <= 10:
+            self.i += 1
+            return a
+        else: raise StopIteration
+
+banana = Banana()
+
+for i in banana:
+    print(i)
+# Output
+
+# 0
+# 1
+# 2
+# 3
+# 4
+# 5
+# 6
+# 7
+# 8
+# 9
+# 10
+```
+whenever an iterator is created from the class, (happens implicitly on for loop) it creates a variable `self.i` and on every `next()`, it increments `self.i` and returns the current value.  
 ___
 
 # Exception Handling
